@@ -1,5 +1,7 @@
 package com.lab.jpa.repository;
 
+import com.lab.jpa.entities.Club;
+import com.lab.jpa.entities.Salary;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,6 +34,17 @@ public class CompanyDao {
         return list;
     }
 
+    public String quaryClubName(Integer id) {
+        Club club = (Club) getSession().get(Club.class, id);
+        club.getEmployees().stream().filter(a -> a.getClubs().equals("A")).count();
+        return club.getName();
+    }
+
+    public Long quaryClubCount(Integer id) {
+        Club club = (Club) getSession().get(Club.class, id);
+        return club.getEmployees().stream().count();
+    }
+
     public List quaryAllEmps() {
         List list = getSession().createQuery("from Employee e").list();
         return list;
@@ -50,6 +63,16 @@ public class CompanyDao {
     public List quaryAvgSalaries() {
         List list = getSession().createQuery("SELECT AVG(money) AS avg FROM Salary s ").list();
         return list;
+    }
+
+    public String quarySalaryName(Integer id) {
+        Salary s = (Salary) getSession().get(Salary.class, id);
+        return s.getEmployee().getName();
+    }
+
+    public Integer quarySalaryByID(Integer id) {
+        Salary s = (Salary) getSession().get(Salary.class, id);
+        return s.getEmployee().getSalary().getMoney();
     }
 
     public List quaryCountAllEmps() {

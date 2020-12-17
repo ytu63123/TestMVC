@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!doctype html>
 <html>
     <head>
@@ -61,18 +62,27 @@
                         </form>
                         <c:forEach var="salary_sum" items="${salarySum_list}">
                             <p style="text-align:left;">薪資總額:${salary_sum}
-                        </c:forEach>
-                        <c:forEach var="salary_avg" items="${salaryAvg_list}">
-                            平均薪資:${salary_avg}</p>
-                        </c:forEach>
+                            </c:forEach>
+                            <c:forEach var="salary_avg" items="${salaryAvg_list}">
+                                平均薪資:${salary_avg}</p>
+                            </c:forEach>
                     </td>
 
                     <td valign="top">
                         <!-- 圖表 -->
                         <form class="pure-form">
                             <fieldset>
-                                <legend>OOO chart</legend>
-
+                                <legend>員工薪資表</legend>
+                                <my:barchart salary="員工薪資"
+                                             name1="${salaryName1}"
+                                             name2="${salaryName2}"
+                                             name3="${salaryName3}"
+                                             name4="${salaryName4}"
+                                             one="${salary1}" 
+                                             two="${salary2}" 
+                                             three="${salary3}" 
+                                             four="${salary4}" >                     
+                                </my:barchart>
                             </fieldset>
                         </form>
                     </td>

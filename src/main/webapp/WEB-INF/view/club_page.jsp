@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!doctype html>
 <html>
     <head>
@@ -62,8 +63,14 @@
                         <!-- 圖表 -->
                         <form class="pure-form">
                             <fieldset>
-                                <legend>OOO chart</legend>
-
+                                <legend>社團人數長條圖</legend>
+                                <my:columnchart club="社團人數"
+                                                name1="${club_name1}"
+                                                name2="${club_name2}"
+                                                one="${club1}"
+                                                two="${club2}"
+                                                 >    
+                                </my:columnchart>        
                             </fieldset>
                         </form>
                     </td>

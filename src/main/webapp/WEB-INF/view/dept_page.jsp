@@ -1,7 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!doctype html>
 <html>
     <head>
@@ -60,11 +61,14 @@
                         </form>
                     </td>
                     <td valign="top">
-                        <!-- 圖表 -->
                         <form class="pure-form">
                             <fieldset>
-                                <legend>OOO chart</legend>
-
+                                <legend>部門人數 圓餅圖</legend>
+                                <my:pichart 
+                                    task="部門"
+                                    it="2" 
+                                    sales="2" >
+                                </my:pichart>
                             </fieldset>
                         </form>
                     </td>

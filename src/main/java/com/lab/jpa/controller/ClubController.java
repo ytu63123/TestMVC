@@ -18,7 +18,15 @@ public class ClubController {
     @RequestMapping(value = {"/"})
     public String read(Model model) {
         List club_list = dao.quaryAllClubs();
+        String club_name1 = dao.quaryClubName(1);
+        String club_name2 = dao.quaryClubName(2);
+        Long club1 = dao.quaryClubCount(1);
+        Long club2 = dao.quaryClubCount(2);
         model.addAttribute("club_list", club_list);
+        model.addAttribute("club_name1", club_name1);
+        model.addAttribute("club_name2", club_name2);
+        model.addAttribute("club1", club1);
+        model.addAttribute("club2", club2);
         return "club_page";
     }
 }
