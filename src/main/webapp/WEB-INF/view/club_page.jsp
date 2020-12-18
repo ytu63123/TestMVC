@@ -2,12 +2,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!doctype html>
 <html>
     <head>
         <!-- Head -->
         <%@include file="include/head.jspf"  %>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawBasic);
+
+            function drawBasic() {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Name');
+                data.addColumn('number', '社團人數');
+
+                data.addRows([
+            <c:forEach var="club" items="${club_list}">
+               ['${club.name}',${fn:length(club.employees)}], 
+            </c:forEach>
+                ]);
+
+
+                var options = {
+                    chartArea: {width: '40%'},
+                    hAxis: {
+                        title: '社團名稱'
+                    },
+                    is3D: true
+                };
+
+                var chart = new google.visualization.ColumnChart(
+                        document.getElementById('chart_div'));
+
+                chart.draw(data, options);
+            }
+        </script>
     </head>
     <body style="padding: 10px">
 
@@ -35,6 +66,7 @@
                     </td>
                     <td valign="top">
                         <!-- 列表 -->
+
                         <form class="pure-form">
                             <fieldset>
                                 <legend>Club list</legend>
@@ -64,19 +96,11 @@
                         <form class="pure-form">
                             <fieldset>
                                 <legend>社團人數長條圖</legend>
-                                <my:columnchart club="社團人數"
-                                                name1="${club_name1}"
-                                                name2="${club_name2}"
-                                                one="${club1}"
-                                                two="${club2}"
-                                                 >    
-                                </my:columnchart>        
+                                <div id="chart_div" style="width: 300px; height: 300px;"></div>                        
                             </fieldset>
                         </form>
-                    </td>
+                    </td>    
                 </table>   
-
-
             </div>
         </div>
 

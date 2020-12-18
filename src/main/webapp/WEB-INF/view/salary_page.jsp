@@ -2,12 +2,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!doctype html>
 <html>
     <head>
         <!-- Head -->
         <%@include file="include/head.jspf"  %>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawBasic);
+
+            function drawBasic() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['name', 'money'],
+            <c:forEach var="salary" items="${salary_list}">
+                    ['${salary.employee.name}',${salary.money}],
+            </c:forEach>
+                ]);
+
+                var options = {
+                    chartArea: {width: '50%'},
+                    hAxis: {
+                        minValue: 0
+                    },
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('barchart'));
+
+                chart.draw(data, options);
+            }
+        </script>
     </head>
     <body style="padding: 10px">
 
@@ -73,16 +98,7 @@
                         <form class="pure-form">
                             <fieldset>
                                 <legend>員工薪資表</legend>
-                                <my:barchart salary="員工薪資"
-                                             name1="${salaryName1}"
-                                             name2="${salaryName2}"
-                                             name3="${salaryName3}"
-                                             name4="${salaryName4}"
-                                             one="${salary1}" 
-                                             two="${salary2}" 
-                                             three="${salary3}" 
-                                             four="${salary4}" >                     
-                                </my:barchart>
+                                <div id="barchart" style="width: 500px; height: 500px;" ></div>
                             </fieldset>
                         </form>
                     </td>

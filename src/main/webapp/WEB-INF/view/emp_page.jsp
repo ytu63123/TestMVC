@@ -7,6 +7,59 @@
     <head>
         <!-- Head -->
         <%@include file="include/head.jspf"  %>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.setOnLoadCallback(drawSalary);
+            google.charts.setOnLoadCallback(drawClub);
+
+            function drawSalary() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['name', '薪資'],
+            <c:forEach var="emp" items="${emp_list}">
+                    ['${emp.name}',${emp.salary.money}],
+            </c:forEach>
+                ]);
+
+                var options = {
+                    chartArea: {width: '50%'},
+                    hAxis: {
+                        minValue: 0
+                    },
+                };
+
+                var chart = new google.visualization.BarChart(document.getElementById('salarychart'));
+
+                chart.draw(data, options);
+            }
+            function drawClub() {
+
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Name');
+                data.addColumn('number', '參加多少社團');
+
+                data.addRows([
+            <c:forEach var="emp" items="${emp_list}">
+               ['${emp.name}',${fn:length(emp.clubs)}], 
+            </c:forEach>
+                ]);
+
+
+                var options = {
+                    chartArea: {width: '50%'},
+                    hAxis: {
+                        title: '社團名稱'
+                    },
+                    is3D: true
+                };
+
+                var chart = new google.visualization.ColumnChart(
+                        document.getElementById('chart_club'));
+
+                chart.draw(data, options);
+            }
+        </script>
     </head>
     <body style="padding: 10px">
 
@@ -73,9 +126,11 @@
                         <!-- 圖表 -->
                         <form class="pure-form">
                             <fieldset>
-                                <legend>OOO chart</legend>
-
+                                <legend>員工資料圖表</legend>
+                                <div id="salarychart" style="width: 400px; height: 400px;" ></div>
+                                 <div id="chart_club" style="width: 450px; height: 450px;"></div>
                             </fieldset>
+                           
                         </form>
                     </td>
                 </table>   

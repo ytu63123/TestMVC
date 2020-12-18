@@ -2,12 +2,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <!doctype html>
 <html>
     <head>
         <!-- Head -->
         <%@include file="include/head.jspf"  %>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawBasic);
+
+            function drawBasic() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['name', '人數'],
+            <c:forEach var="dept" items="${dept_list}">
+                    ['${dept.name}',${fn:length(dept.employees)}],
+            </c:forEach>
+
+                ]);
+
+                var options = {
+                    title: '部門人數',
+                    is3D: true
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                chart.draw(data, options);
+            }
+        </script>
     </head>
     <body style="padding: 10px">
 
@@ -64,11 +88,7 @@
                         <form class="pure-form">
                             <fieldset>
                                 <legend>部門人數 圓餅圖</legend>
-                                <my:pichart 
-                                    task="部門"
-                                    it="2" 
-                                    sales="2" >
-                                </my:pichart>
+                                <div id="piechart" style="width: 500px; height: 500px;" ></div>
                             </fieldset>
                         </form>
                     </td>
