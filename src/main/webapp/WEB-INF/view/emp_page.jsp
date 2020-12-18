@@ -9,9 +9,10 @@
         <%@include file="include/head.jspf"  %>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            google.charts.load('current', {packages: ['corechart', 'bar']});
+            google.charts.load('current', {'packages': ['corechart', 'bar']});
             google.charts.setOnLoadCallback(drawSalary);
             google.charts.setOnLoadCallback(drawClub);
+            google.charts.setOnLoadCallback(drawDept);
 
             function drawSalary() {
 
@@ -25,7 +26,8 @@
                 var options = {
                     chartArea: {width: '50%'},
                     hAxis: {
-                        minValue: 0
+                        title: '員工x薪資',
+                        minValue:0
                     },
                 };
 
@@ -41,7 +43,7 @@
 
                 data.addRows([
             <c:forEach var="emp" items="${emp_list}">
-               ['${emp.name}',${fn:length(emp.clubs)}], 
+                    ['${emp.name}',${fn:length(emp.clubs)}],
             </c:forEach>
                 ]);
 
@@ -49,13 +51,33 @@
                 var options = {
                     chartArea: {width: '50%'},
                     hAxis: {
-                        title: '社團名稱'
+                        title: '員工x社團'
                     },
                     is3D: true
                 };
 
                 var chart = new google.visualization.ColumnChart(
                         document.getElementById('chart_club'));
+
+                chart.draw(data, options);
+            }
+
+            function drawDept() {
+
+                var data = google.visualization.arrayToDataTable([
+                    ['name', '人數'],
+            <c:forEach var="dept" items="${dept_list}">
+                    ['${dept.name}',${fn:length(dept.employees)}],
+            </c:forEach>
+
+                ]);
+
+                var options = {
+                    title: '員工x部門',                 
+                    is3D: true
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_Dept'));
 
                 chart.draw(data, options);
             }
@@ -127,10 +149,11 @@
                         <form class="pure-form">
                             <fieldset>
                                 <legend>員工資料圖表</legend>
+                                <div id="piechart_Dept" style="width: 400px; height: 400px;" ></div>
                                 <div id="salarychart" style="width: 400px; height: 400px;" ></div>
-                                 <div id="chart_club" style="width: 450px; height: 450px;"></div>
+                                <div id="chart_club" style="width: 450px; height: 450px;"></div>                                
                             </fieldset>
-                           
+
                         </form>
                     </td>
                 </table>   

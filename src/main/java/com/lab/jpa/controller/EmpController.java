@@ -19,6 +19,8 @@ public class EmpController {
     public String read(Model model) {
         List emp_list = dao.quaryAllEmps();
         List empCount_list = dao.quaryCountAllEmps();
+        List dept_list=dao.quaryAllDepts();
+        model.addAttribute("dept_list",dept_list);
         model.addAttribute("emp_list", emp_list);
         model.addAttribute("empCount_list", empCount_list);
         return "emp_page";
