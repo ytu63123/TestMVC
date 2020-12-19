@@ -58,9 +58,15 @@
                     <td valign="top">
                         <!-- 表單 -->
                         <form:form class="pure-form" 
-                                   modelAttribute="emp" 
+                                   modelAttribute="club" 
                                    method="post" 
-                                   action="${pageContext.request.contextPath}/mvc/" >
+                                   action="${pageContext.request.contextPath}/mvc/club/" >
+                            <fieldset>
+                                <legend>Club Form</legend>
+                                <form:input path="id" readonly="true" /><p />
+                                <form:input path="name" placeholder="請輸入社團名稱" /><p />
+                                <button type="sumbit" class="pure-button pure-button-primary">Submit</button>
+                            </fieldset>
 
                         </form:form>
                     </td>
@@ -76,6 +82,7 @@
                                             <th>序號</th>
                                             <th>名稱</th>
                                             <th>人數</th>
+                                            <th>修改</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,6 +91,7 @@
                                                 <td>${club.id}</td>
                                                 <td>${club.name}</td>
                                                 <td>${fn:length(club.employees)}</td>
+                                                 <td><a href="${pageContext.request.contextPath}/mvc/club/${ club.id }">修改</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

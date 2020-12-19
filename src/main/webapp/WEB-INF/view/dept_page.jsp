@@ -9,7 +9,7 @@
         <%@include file="include/head.jspf"  %>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript">
-            google.charts.load('current', {'packages':['corechart']});
+            google.charts.load('current', {'packages': ['corechart']});
             google.charts.setOnLoadCallback(drawBasic);
 
             function drawBasic() {
@@ -51,10 +51,15 @@
                     <td valign="top">
                         <!-- 表單 -->
                         <form:form class="pure-form" 
-                                   modelAttribute="emp" 
+                                   modelAttribute="dept" 
                                    method="post" 
-                                   action="${pageContext.request.contextPath}/mvc/" >
-
+                                   action="${pageContext.request.contextPath}/mvc/dept/" >
+                            <fieldset>
+                                <legend>Dept From</legend>
+                                <form:input path="id" readonly="true" /><p />
+                                <form:input path="name" placeholder="請輸入部門名稱" /><p />
+                                <button type="sumbit" class="pure-button pure-button-primary">Submit</button>
+                            </fieldset>
                         </form:form>
                     </td>
                     <td valign="top">
@@ -68,6 +73,7 @@
                                             <th>序號</th>
                                             <th>名稱</th>
                                             <th>人數</th>
+                                            <th>修改</th>
                                         </tr>
                                     </thead>
 
@@ -77,6 +83,7 @@
                                                 <td>${dept.id}</td>
                                                 <td>${dept.name}</td>
                                                 <td>${fn:length(dept.employees)}</td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/dept/${ dept.id }">修改</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

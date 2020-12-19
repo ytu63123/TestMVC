@@ -3,24 +3,24 @@ package com.lab.jpa.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "salaries")
 public class Salary {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private Integer id;
+    
     @Column
-    private int money;
+    private Integer money;
     
     @OneToOne(mappedBy = "salary")
     private Employee employee;
-
+            
+            
     public Integer getId() {
         return id;
     }
@@ -29,11 +29,11 @@ public class Salary {
         this.id = id;
     }
 
-    public int getMoney() {
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
 
@@ -44,13 +44,9 @@ public class Salary {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+    
 
-    @Override
-    public String toString() {
-        return "Salary{" + "id=" + id + ", money=" + money + '}';
-    }
+ 
 
-
-       
-
+    
 }
