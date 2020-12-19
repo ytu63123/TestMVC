@@ -58,7 +58,7 @@
                                 <legend>Dept From</legend>
                                 <form:input path="id" readonly="true" /><p />
                                 <form:input path="name" placeholder="請輸入部門名稱" /><p />
-                                <button type="sumbit" class="pure-button pure-button-primary">Submit</button>
+                                <button type="sumbit" class="pure-button pure-button-primary">Submit</button>              
                             </fieldset>
                         </form:form>
                     </td>

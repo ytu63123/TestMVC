@@ -169,9 +169,9 @@
                         <form class="pure-form">
                             <fieldset>
                                 <legend>員工資料圖表</legend>
-                                <div id="piechart_Dept" style="width: 400px; height: 400px;" ></div>
+                                <div id="piechart_Dept" style="width: 450px; height: 450px;" ></div>
                                 <div id="salarychart" style="width: 400px; height: 400px;" ></div>
-                                <div id="chart_club" style="width: 450px; height: 450px;"></div>                                
+                                <div id="chart_club" style="width: 500px; height: 500px;"></div>                                
                             </fieldset>
 
                         </form>

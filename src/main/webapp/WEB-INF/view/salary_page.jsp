@@ -15,7 +15,7 @@
             function drawBasic() {
 
                 var data = google.visualization.arrayToDataTable([
-                    ['name', 'money'],
+                    ['name', '薪資(元)'],
             <c:forEach var="salary" items="${salary_list}">
                     ['${salary.employee.name}',${salary.money}],
             </c:forEach>
@@ -89,7 +89,7 @@
                             <p style="text-align:left;">薪資總額:${salary_sum}
                             </c:forEach>
                             <c:forEach var="salary_avg" items="${salaryAvg_list}">
-                                平均薪資:${salary_avg}</p>
+                                平均薪資:<fmt:formatNumber type="number" maxFractionDigits="3" value="${salary_avg}" /></p>
                             </c:forEach>
                     </td>
 

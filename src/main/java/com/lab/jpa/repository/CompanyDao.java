@@ -17,7 +17,7 @@ public class CompanyDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private Session session=null ;
+    private Session session = null;
 
     private Session getSession() {
 //        if(session!=null){
@@ -47,6 +47,8 @@ public class CompanyDao {
         getSession().persist(dept);
     }
 
+
+
     public List quaryAllClubs() {
         List list = getSession().createQuery("from Club c").list();
         return list;
@@ -56,7 +58,6 @@ public class CompanyDao {
         Club club = (Club) getSession().get(Club.class, id);
         return club;
     }
-
 
     @Transactional
     public void saveClub(Club club) {
