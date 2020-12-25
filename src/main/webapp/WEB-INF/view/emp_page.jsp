@@ -27,7 +27,7 @@
                     chartArea: {width: '50%'},
                     hAxis: {
                         title: '員工x薪資',
-                        minValue:0
+                        minValue: 0
                     },
                 };
 
@@ -73,7 +73,7 @@
                 ]);
 
                 var options = {
-                    title: '員工x部門',                 
+                    title: '員工x部門',
                     is3D: true
                 };
 
@@ -108,7 +108,9 @@
                                 <legend>Emp Form</legend>
                                 <form:input path="id" readonly="true" /><p />
                                 <form:input path="name" placeholder="請輸入員工名稱" /><p />
+                                <form:errors path="name" style="color:red" /><p />
                                 <form:input path="salary.money" placeholder="請輸入薪資" /><p />
+                                <form:errors path="salary.money" style="color:red" /><p />
                                 <form:select path="department.id">
                                     <form:option value="0" label="請選擇" />
                                     <form:options items="${ dept_list }" itemValue="id" itemLabel="name" />
@@ -120,8 +122,10 @@
                                                    checked
                                                </c:if>
                                            </c:forEach>
-                                    > ${ club.name }
+                                           > ${ club.name }
                                 </c:forEach><p />
+                                <form:errors path="*" style="color:red" /><p />
+                                <input type="text" id="_method" name="_method" readonly="true" value="${_method}" /><p />
                                 <button type="sumbit" class="pure-button pure-button-primary">Submit</button>
                             </fieldset>
 
@@ -140,6 +144,8 @@
                                             <th>部門</th>
                                             <th>薪資</th>
                                             <th>社團</th>
+                                            <th>修改</th>
+                                            <th>刪除</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -154,6 +160,9 @@
                                                         ${club.name}
                                                     </c:forEach>
                                                 </td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/emp/${emp.id}">修改</a></td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/emp/delete/${emp.id}">刪除</a></td>
+
                                             </tr>
                                         </c:forEach>
                                     </tbody>

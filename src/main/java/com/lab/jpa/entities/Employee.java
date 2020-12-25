@@ -25,11 +25,11 @@ public class Employee {
     @Column
     private String name;
     
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(cascade={CascadeType.ALL})
     @JoinColumn(name = "salary_id")
     private Salary salary;
     
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.ALL})
     @JoinColumn(name = "department_id")
     private Department department;
     

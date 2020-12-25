@@ -1,5 +1,6 @@
 package com.lab.jpa.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +18,8 @@ public class Salary {
     @Column
     private Integer money;
     
-    @OneToOne(mappedBy = "salary")
-    private Employee employee;
+//    @OneToOne(mappedBy = "salary")
+//    private Employee employee;
             
             
     public Integer getId() {
@@ -37,13 +38,13 @@ public class Salary {
         this.money = money;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+//    public Employee getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(Employee employee) {
+//        this.employee = employee;
+//    }
     
 
  

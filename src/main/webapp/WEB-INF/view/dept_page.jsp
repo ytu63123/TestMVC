@@ -54,11 +54,13 @@
                                    modelAttribute="dept" 
                                    method="post" 
                                    action="${pageContext.request.contextPath}/mvc/dept/" >
-                            <fieldset>
+                           <fieldset>
                                 <legend>Dept From</legend>
                                 <form:input path="id" readonly="true" /><p />
-                                <form:input path="name" placeholder="請輸入部門名稱" /><p />
-                                <button type="sumbit" class="pure-button pure-button-primary">Submit</button>              
+                                <form:input path="name" placeholder="請輸入部門名稱:" /><p />
+                                <input type="text" id="_method" name="_method" readonly="true" value="${_method}" /><p />
+                                <form:errors path="name" style="color:red" /><p />
+                                <button type="sumbit" class="pure-button pure-button-primary">Submit</button>
                             </fieldset>
                         </form:form>
                     </td>
@@ -74,16 +76,18 @@
                                             <th>名稱</th>
                                             <th>人數</th>
                                             <th>修改</th>
+                                            <th>刪除</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                         <c:forEach var="dept" items="${dept_list}">
                                             <tr>
-                                                <td>${dept.id}</td>
+                                               <td>${dept.id}</td>
                                                 <td>${dept.name}</td>
                                                 <td>${fn:length(dept.employees)}</td>
-                                                <td><a href="${pageContext.request.contextPath}/mvc/dept/${ dept.id }">修改</a></td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/dept/${dept.id}">修改</a></td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/dept/delete/${dept.id}">刪除</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

@@ -18,9 +18,9 @@
             <li class="pure-menu-item menu-item-divided pure-menu-selected">
                 <a href="${pageContext.request.contextPath}/mvc/emp/" class="pure-menu-link">員工</a>
             </li>
-            <li class="pure-menu-item menu-item-divided pure-menu-selected">
+<!--            <li class="pure-menu-item menu-item-divided pure-menu-selected">
                 <a href="${pageContext.request.contextPath}/mvc/salary/" class="pure-menu-link">薪資</a>
-            </li>
+            </li>-->
         </ul>
     </div>
 </div>

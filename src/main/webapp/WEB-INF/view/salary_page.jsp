@@ -52,10 +52,18 @@
                     <td valign="top">
                         <!-- 表單 -->
                         <form:form class="pure-form" 
-                                   modelAttribute="emp" 
+                                   modelAttribute="salary" 
                                    method="post" 
-                                   action="${pageContext.request.contextPath}/mvc/" >
-
+                                   action="${pageContext.request.contextPath}/mvc/salary/" >
+                            <fieldset>
+                                <legend>Salary Form</legend>
+                                <form:input path="id" readonly="true" /><p />
+                                <form:input path="employee.name" readonly="true"  /><p />
+                                <form:input path="money" placeholder="請輸入薪資" /><p />
+                                <input type="text" id="_method" name="_method" readonly="true" value="${_method}" /><p />
+                                <form:errors path="*" style="color:red" /><p />
+                                <button type="sumbit" class="pure-button pure-button-primary">Submit</button>
+                            </fieldset>
                         </form:form>
                     </td>
                     <td valign="top">
@@ -69,7 +77,7 @@
                                             <th>序號</th>
                                             <th>姓名</th>
                                             <th>薪資</th>
-
+                                            <th>修改</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,6 +87,7 @@
                                                 <td>${salary.id}</td>
                                                 <td>${salary.employee.name}</td>
                                                 <td>${salary.money}</td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/salary/${salary.id}">修改</a></td>                                               
                                             </tr>
                                         </c:forEach>                                            
                                     </tbody>

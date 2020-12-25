@@ -20,7 +20,7 @@
 
                 data.addRows([
             <c:forEach var="club" items="${club_list}">
-               ['${club.name}',${fn:length(club.employees)}], 
+                    ['${club.name}',${fn:length(club.employees)}],
             </c:forEach>
                 ]);
 
@@ -65,6 +65,8 @@
                                 <legend>Club Form</legend>
                                 <form:input path="id" readonly="true" /><p />
                                 <form:input path="name" placeholder="請輸入社團名稱" /><p />
+                                <input type="text" id="_method" name="_method" readonly="true" value="${_method}" /><p />
+                                <form:errors path="*" style="color:red" /><p />
                                 <button type="sumbit" class="pure-button pure-button-primary">Submit</button>
                             </fieldset>
 
@@ -83,6 +85,7 @@
                                             <th>名稱</th>
                                             <th>人數</th>
                                             <th>修改</th>
+                                            <th>刪除</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -91,7 +94,8 @@
                                                 <td>${club.id}</td>
                                                 <td>${club.name}</td>
                                                 <td>${fn:length(club.employees)}</td>
-                                                 <td><a href="${pageContext.request.contextPath}/mvc/club/${ club.id }">修改</a></td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/club/${ club.id }">修改</a></td>
+                                                <td><a href="${pageContext.request.contextPath}/mvc/club/delete/${club.id}">刪除</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
